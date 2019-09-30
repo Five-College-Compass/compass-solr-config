@@ -41,12 +41,8 @@
   <!--
     Parameter(s) from custom_parameters.properties.
   -->
-  <!-- BD edit 04/16/19 index_ancestors only should be set to true not the default false. Leave index_ancestors_models as false -->
   <xsl:param name="index_ancestors" select="true()"/>
-  <xsl:param name="index_ancestors_models" select="false()"/>
-  <xsl:param name="maintain_dataset_latest_version_flag" select="false()"/>
-  <xsl:param name="index_compound_sequence" select="true()"/>
-  <xsl:param name="index_checksums" select="false()"/>
+  <xsl:param name="index_ancestors_models" select="true()"/>
 
   <!-- These values are accessible in included xslts -->
   <xsl:variable name="PROT">http</xsl:variable>
@@ -82,53 +78,51 @@
   -->
 
   <!--
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/DC_to_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/RELS-EXT_to_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/RELS-INT_to_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/FOXML_properties_to_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/datastream_info_to_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/slurp_all_MODS_to_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/slurp_all_ead_to_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/MODS_to_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/EACCPF_to_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/TEI_to_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/text_to_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/XML_to_one_solr_field.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/XML_text_nodes_to_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/MADS_to_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/WORKFLOW_to_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/slurp_all_chemicalML_to_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/library/traverse-graph.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/hierarchy.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/or_transcript_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/vtt_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/DC_to_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/RELS-EXT_to_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/RELS-INT_to_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/FOXML_properties_to_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/datastream_info_to_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/slurp_all_MODS_to_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/slurp_all_ead_to_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/MODS_to_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/EACCPF_to_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/TEI_to_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/text_to_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/XML_to_one_solr_field.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/XML_text_nodes_to_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/MADS_to_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/WORKFLOW_to_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/slurp_all_chemicalML_to_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/library/traverse-graph.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/hierarchy.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/or_transcript_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/config/index/FgsIndex/islandora_transforms/vtt_solr.xslt"/>
   -->
 
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/DC_to_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/QDC_to_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/RELS-EXT_to_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/RELS-INT_to_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/FOXML_properties_to_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/datastream_info_to_solr.xslt"/>
-  <!--<xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/MODS_to_solr.xslt"/>-->
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/slurp_all_MODS_to_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/slurp_all_ead_to_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/EACCPF_to_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/TEI_to_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/text_to_solr.xslt"/>
-  <!--<xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/XML_to_one_solr_field.xslt"/>-->
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/XML_text_nodes_to_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/MADS_to_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/WORKFLOW_to_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/slurp_all_chemicalML_to_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/slurp_XML_converted_JSON_to_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/or_transcript_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/vtt_solr.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/library/traverse-graph.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/hierarchy.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/ancestors_models_to_solr_field.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/library/xslt-date-template.xslt"/>
-  <xsl:include href="/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/research_data_versions.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/DC_to_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/QDC_to_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/RELS-EXT_to_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/RELS-INT_to_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/FOXML_properties_to_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/datastream_info_to_solr.xslt"/>
+  <!--<xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/MODS_to_solr.xslt"/>-->
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/slurp_all_MODS_to_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/slurp_all_ead_to_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/EACCPF_to_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/TEI_to_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/text_to_solr.xslt"/>
+  <!--<xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/XML_to_one_solr_field.xslt"/>-->
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/XML_text_nodes_to_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/MADS_to_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/WORKFLOW_to_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/slurp_all_chemicalML_to_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/slurp_XML_converted_JSON_to_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/or_transcript_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/vtt_solr.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/library/traverse-graph.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/hierarchy.xslt"/>
+  <xsl:include href="/var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/ancestors_models_to_solr_field.xslt"/>
 
   <!-- Decide which objects to modify the index of -->
   <xsl:template match="/">
@@ -137,21 +131,11 @@
       <xsl:if test="not(foxml:digitalObject/foxml:datastream[@ID='METHODMAP' or @ID='DS-COMPOSITE-MODEL'])">
         <xsl:choose>
           <xsl:when test="foxml:digitalObject/foxml:objectProperties/foxml:property[@NAME='info:fedora/fedora-system:def/model#state' and @VALUE='Active']">
-            <xsl:variable name="doc">
+            <add>
               <xsl:apply-templates select="/foxml:digitalObject" mode="indexFedoraObject">
                 <xsl:with-param name="PID" select="$PID"/>
               </xsl:apply-templates>
-            </xsl:variable>
-
-            <add>
-              <xsl:copy-of select="$doc"/>
             </add>
-
-            <xsl:if test="$maintain_dataset_latest_version_flag">
-              <xsl:call-template name="reindex_previous_newest_research_data_set_version_if_necessary">
-                <xsl:with-param name="current" select="xalan:nodeset($doc)"/>
-              </xsl:call-template>
-            </xsl:if>
             <!-- Newspaper graph example.
             <xsl:variable name="graph">
               <xsl:call-template name="_traverse_graph">
@@ -212,19 +196,12 @@
   <!-- Index an object -->
   <xsl:template match="/foxml:digitalObject" mode="indexFedoraObject">
     <xsl:param name="PID"/>
-    <xsl:param name="version" select="false()"/>
 
     <doc>
       <!-- put the object pid into a field -->
       <field name="PID">
         <xsl:value-of select="$PID"/>
       </field>
-
-      <xsl:if test="$version">
-        <field name="_version_">
-          <xsl:value-of select="$version"/>
-        </field>
-      </xsl:if>
 
       <!-- These templates are in the islandora_transforms -->
       <xsl:apply-templates select="foxml:objectProperties/foxml:property"/>
@@ -245,9 +222,6 @@
               <xsl:with-param name="content" select="foxml:datastreamVersion[last()]/foxml:xmlContent"/>
             </xsl:apply-templates>
           </xsl:when>
-          <!-- begin: islandora_solution_pack_oralhistories setup -->
-          <xsl:when test="@CONTROL_GROUP='M' and @ID='TRANSCRIPT' and foxml:datastreamVersion[last()][@MIMETYPE='text/vtt']">  </xsl:when>
-          <!-- end: islandora_solution_pack_oralhistories setup -->
           <xsl:when test="@CONTROL_GROUP='M' and foxml:datastreamVersion[last()][@MIMETYPE='text/xml' or @MIMETYPE='application/xml' or @MIMETYPE='application/rdf+xml' or @MIMETYPE='text/html' or @MIMETYPE='chemical/x-cml']">
             <!-- TODO: should do something about mime type filtering
               text/plain should use the getDatastreamText extension because document will only work for xml docs
@@ -270,7 +244,7 @@
                handle the mimetypes supported by the "getDatastreamText" call:
                https://github.com/fcrepo/gsearch/blob/master/FedoraGenericSearch/src/java/dk/defxws/fedoragsearch/server/TransformerToText.java#L185-L200
           -->
-          <xsl:when test="@CONTROL_GROUP='M' and foxml:datastreamVersion[last() and not(starts-with(@MIMETYPE, 'image') or starts-with(@MIMETYPE, 'audio') or starts-with(@MIMETYPE, 'video') or @MIMETYPE = 'application/pdf' or @MIMETYPE = 'application/octet-stream' or @MIMETYPE = 'application/mxf' or @MIMETYPE = 'application/zip' or @MIMETYPE = 'application/x-zip')]">
+          <xsl:when test="@CONTROL_GROUP='M' and foxml:datastreamVersion[last() and not(starts-with(@MIMETYPE, 'image') or starts-with(@MIMETYPE, 'audio') or starts-with(@MIMETYPE, 'video') or @MIMETYPE = 'application/pdf' or @MIMETYPE = 'application/octet-stream' or @MIMETYPE = 'application/mxf')]">
             <!-- TODO: should do something about mime type filtering
               text/plain should use the getDatastreamText extension because document will only work for xml docs
               xml files should use the document function
