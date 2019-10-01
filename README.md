@@ -4,43 +4,21 @@ In order to manage the solr configuration files for all three compass servers in
 
 ## Installation instructions:
 
-- Git clone this repository to /home/islandora on the server (dev, staging, production):
+- Git clone this repository to /home/islandora on the server (dev, staging, production), and then move it into the `/opt` directory:
 ```
 cd /home/islandora
 git clone git@bitbucket.org:commonmedia/compass-solr-config.git
 sudo mv compass-solr-config /opt/
 sudo chown -Rv tomcat7:tomcat7 /opt/compass-solr-config
 ```
-- Shut down tomcat
+- Run the install script as the root user, which simply backs up the original configuration files to a safe location:
 ```
-sudo service tomcat7 stop
-```
-- Run the install script:
-```
-sudo su 
-./opt/compass-solr-config/install.sh
-```
-- Restart tomcat
-```
-sudo service tomcat7 start
+sudo sh /opt/compass-solr-config/install.sh
 ```
 
-
-## Update instructions
+## Updating the solr config files:
+Do this each time the solr config repo has updates that you need to deploy on this server.
+- Run the update script as the root user:
 ```
-cd /opt/compass-solr-config
-```
-- Shut down tomcat
-```
-sudo service tomcat7 stop
-```
-- Git pull
-git pull origin master
-sudo chown -Rv tomcat7:tomcat7 /opt/compass-solr-config (if necessary)
-```
-
-```
-- Restart tomcat
-```
-sudo service tomcat7 start
+sudo sh /opt/compass-solr-config/update.sh
 ```

@@ -1,21 +1,23 @@
 #!/bin/bash
+if ! [ $(id -u) = 0 ]; then
+   echo "This script must be run as root. Try adding \"sudo \" when running this script."
+   exit 1
+fi
+
+if [ ! -d /home/islandora/compass_solr_config_backups ]; then
+  echo "/home/islandora/compass_solr_config_backups already exists."
+  echo "Double-check that you are not overwriting this backup in error!"
+  echo "Consult the README.md file for additional instructions"
+  echo "Exiting"
+  return 1
+  fi
+
 
 echo "Make a rollback archive directory"
-mkdir -p /home/islandora/archive_oct2019_solr_patch
+mkdir -p /home/islandora/compass_solr_config_backups
 
-echo "Removing original solr configuration files"
-mv /usr/local/solr/collection1/conf/schema.xml /home/islandora/archive_oct2019_solr_patch/schema.xml
-mv /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/foxmlToSolr.xslt /home/islandora/archive_oct2019_solr_patch/foxmlToSolr.xslt
-mv /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms /home/islandora/archive_oct2019_solr_patch/islandora_transforms
-
-echo "Linking updated files"
-ln -s /opt/compass-solr-config/solr/schema.xml /usr/local/solr/collection1/conf/schema.xml
-ln -s /opt/compass-solr-config/fedora/gsearch/islandora_transforms /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms
-# GSearch does not like foxmlToSolr.xslt to be a soft link, so we create a hard link instead.
-ln /opt/compass-solr-config/fedora/gsearch/foxmlToSolr.xslt /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/foxmlToSolr.xslt
-
-echo "Change permissions on updated files"
-chown -h tomcat7:tomcat7 /usr/local/solr/collection1/conf/schema.xml
-chown -h tomcat7:tomcat7 /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/foxmlToSolr.xslt
-chown -h tomcat7:tomcat7 /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms
-chown -Rv tomcat7:tomcat7 /opt/compass-solr-config
+echo "Copying original solr configuration files to /home/islandora/compass_solr_config_backups"
+cp /usr/local/solr/collection1/conf/schema.xml /home/islandora/compass_solr_config_backups/schema.xml
+cp /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/foxmlToSolr.xslt /home/islandora/compass_solr_config_backups/foxmlToSolr.xslt
+cp -R /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms /home/islandora/compass_solr_config_backups/islandora_transforms
+chown -R islandora:islandora /home/islandora/compass_solr_config_backups
