@@ -17,6 +17,3 @@ echo "Change permissions on updated files"
 chown -v tomcat7:tomcat7 /usr/local/solr/collection1/conf/schema.xml
 chown -v tomcat7:tomcat7 /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/foxmlToSolr.xslt
 chown -v tomcat7:tomcat7 /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms
-
-echo "Restart Tomcat"
-sudo service tomcat7 restart

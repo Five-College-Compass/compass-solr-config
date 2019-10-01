@@ -15,7 +15,8 @@ sudo service tomcat7 stop
 ```
 - Run the install script:
 ```
-sudo sh /home/islandora/compass-solr-config/install.sh
+sudo su 
+./home/islandora/compass-solr-config/install.sh
 ```
 - Restart tomcat
 ```
@@ -24,17 +25,19 @@ sudo service tomcat7 start
 
 
 ## Update instructions
-- Move to repository location
+- Git clone this repository to /home/islandora on the server (dev, staging, production):
 ```
-cd /home/islandora/compass-solr-config
+cd /home/islandora
+git clone git@bitbucket.org:commonmedia/compass-solr-config.git
 ```
 - Shut down tomcat
 ```
 sudo service tomcat7 stop
 ```
-- Pull the updates to the solr config files:
+- Run the install script:
 ```
-git pull origin master
+sudo su 
+./home/islandora/compass-solr-config/install.sh
 ```
 - Restart tomcat
 ```
