@@ -246,7 +246,7 @@
           -->
 
           <!-- begin: islandora_solution_pack_oralhistories setup -->
-<!--          <xsl:when test="@CONTROL_GROUP='M' and @ID='TRANSCRIPT' and foxml:datastreamVersion[last()][@MIMETYPE='text/vtt']">  </xsl:when>-->
+          <xsl:when test="@CONTROL_GROUP='M' and @ID='TRANSCRIPT' and foxml:datastreamVersion[last()][@MIMETYPE='text/vtt']">  </xsl:when>
           <!-- end: islandora_solution_pack_oralhistories setup -->
 
           <xsl:when test="@CONTROL_GROUP='M' and foxml:datastreamVersion[last() and not(starts-with(@MIMETYPE, 'image') or starts-with(@MIMETYPE, 'audio') or starts-with(@MIMETYPE, 'video') or @MIMETYPE = 'application/pdf' or @MIMETYPE = 'application/octet-stream' or @MIMETYPE = 'application/mxf')]">
