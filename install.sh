@@ -9,11 +9,12 @@ mv /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/F
 mv /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms /home/islandora/archive_oct2019_solr_patch/islandora_transforms
 
 echo "Copying updated files"
-cp -v /home/islandora/compass-solr-config/solr/schema.xml /usr/local/solr/collection1/conf/schema.xml
-cp -v /home/islandora/compass-solr-config/fedora/gsearch/foxmlToSolr.xslt /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/foxmlToSolr.xslt
-cp -Rv /home/islandora/compass-solr-config/fedora/gsearch/islandora_transforms  /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms
+ln -s /opt/compass-solr-config/solr/schema.xml /usr/local/solr/collection1/conf/schema.xml
+ln -s /opt/compass-solr-config/fedora/gsearch/foxmlToSolr.xslt /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/foxmlToSolr.xslt
+ln -s /opt/compass-solr-config/fedora/gsearch/islandora_transforms /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms
 
 echo "Change permissions on updated files"
-chown -v tomcat7:tomcat7 /usr/local/solr/collection1/conf/schema.xml
-chown -v tomcat7:tomcat7 /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/foxmlToSolr.xslt
-chown -v tomcat7:tomcat7 /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms
+chown -h tomcat7:tomcat7 /usr/local/solr/collection1/conf/schema.xml
+chown -h tomcat7:tomcat7 /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/foxmlToSolr.xslt
+chown -h tomcat7:tomcat7 /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms
+chown -Rv tomcat7:tomcat7 /opt/compass-solr-config

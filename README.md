@@ -8,6 +8,8 @@ In order to manage the solr configuration files for all three compass servers in
 ```
 cd /home/islandora
 git clone git@bitbucket.org:commonmedia/compass-solr-config.git
+sudo mv compass-solr-config /opt/
+sudo chown -Rv tomcat7:tomcat7 /opt/compass-solr-config
 ```
 - Shut down tomcat
 ```
@@ -16,7 +18,7 @@ sudo service tomcat7 stop
 - Run the install script:
 ```
 sudo su 
-./home/islandora/compass-solr-config/install.sh
+./opt/compass-solr-config/install.sh
 ```
 - Restart tomcat
 ```
@@ -25,19 +27,18 @@ sudo service tomcat7 start
 
 
 ## Update instructions
-- Git clone this repository to /home/islandora on the server (dev, staging, production):
 ```
-cd /home/islandora
-git clone git@bitbucket.org:commonmedia/compass-solr-config.git
+cd /opt/compass-solr-config
 ```
 - Shut down tomcat
 ```
 sudo service tomcat7 stop
 ```
-- Run the install script:
+- Git pull
+git pull origin master
+sudo chown -Rv tomcat7:tomcat7 /opt/compass-solr-config (if necessary)
 ```
-sudo su 
-./home/islandora/compass-solr-config/install.sh
+
 ```
 - Restart tomcat
 ```
