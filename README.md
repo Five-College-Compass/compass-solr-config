@@ -11,9 +11,9 @@ git clone git@bitbucket.org:commonmedia/compass-solr-config.git
 sudo mv compass-solr-config /opt/
 sudo chown -Rv tomcat7:tomcat7 /opt/compass-solr-config
 ```
-- Run the install script as the root user, which simply backs up the original configuration files to a safe location:
+- Run the backup script as the root user, which simply backs up the original configuration files to a safe location:
 ```
-sudo sh /opt/compass-solr-config/install.sh
+sudo sh /opt/compass-solr-config/backup.sh
 ```
 
 ## Updating the solr config files:

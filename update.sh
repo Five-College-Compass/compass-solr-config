@@ -2,7 +2,7 @@
 
 if ! [ $(id -u) = 0 ]; then
    echo "This script must be run as root. Try adding \"sudo \" when running this script."
-   exit 1
+   return 1
 fi
 if [ ! -d /opt/compass-solr-config ]; then
   echo "/opt/compass-solr-config does not exist."
@@ -21,14 +21,20 @@ service tomcat7 stop
 echo "Removing previous solr schema file"
 if test -h /usr/local/solr/collection1/conf/schema.xml; then
   unlink /usr/local/solr/collection1/conf/schema.xml
+elif test -f /usr/local/solr/collection1/conf/schema.xml; then
+  rm /usr/local/solr/collection1/conf/schema.xml
   fi
 echo "Removing previous foxmlToSolr.xslt file"  
 if test -h /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/foxmlToSolr.xslt; then
   unlink /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/foxmlToSolr.xslt
+elif test -f /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/foxmlToSolr.xslt; then
+  rm /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/foxmlToSolr.xslt
   fi
 echo "Removing previous islandora_transforms directory"  
 if test -h /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms; then
   unlink /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms
+elif test -d /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms; then
+  rm -rf /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms
   fi
 
 echo "Linking updated files"
