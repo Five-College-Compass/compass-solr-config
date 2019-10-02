@@ -18,18 +18,17 @@ sudo -u islandora bash -c "git pull"
 echo "Shutting down tomcat."
 service tomcat7 stop
 
-echo "Removing previous solr configuration files"
-if test -f /usr/local/solr/collection1/conf/schema.xml; then
-  rm /usr/local/solr/collection1/conf/schema.xml
+echo "Removing previous solr schema file"
+if test -h /usr/local/solr/collection1/conf/schema.xml; then
+  unlink /usr/local/solr/collection1/conf/schema.xml
   fi
-if test -f /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/foxmlToSolr.xslt; then
-  rm /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/foxmlToSolr.xslt
+echo "Removing previous foxmlToSolr.xslt file"  
+if test -h /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/foxmlToSolr.xslt; then
+  unlink /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/foxmlToSolr.xslt
   fi
-if test -f var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms; then
-  rm var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms
-  fi
-if test -d var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms; then
-  rm -rf var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms
+echo "Removing previous islandora_transforms directory"  
+if test -h /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms; then
+  unlink /var/lib/tomcat7/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms
   fi
 
 echo "Linking updated files"
