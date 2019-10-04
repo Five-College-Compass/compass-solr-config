@@ -4,7 +4,7 @@ if ! [ $(id -u) = 0 ]; then
    exit 1
 fi
 
-if [ ! -d /home/islandora/compass_solr_config_backups ]; then
+if [ -d /home/islandora/compass_solr_config_backups ]; then
   echo "/home/islandora/compass_solr_config_backups already exists."
   echo "Double-check that you are not overwriting this backup in error!"
   echo "Consult the README.md file for additional instructions"
