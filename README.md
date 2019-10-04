@@ -7,7 +7,7 @@ In order to manage the solr configuration files for all three compass servers in
 - Git clone this repository to /home/islandora on the server (dev, staging, production), and then move it into the `/opt` directory:
 ```
 cd /home/islandora
-git clone git@bitbucket.org:commonmedia/compass-solr-config.git
+git clone https://github.com/Five-College-Compass/compass-solr-config.git
 sudo mv compass-solr-config /opt/
 sudo chown -Rv tomcat7:tomcat7 /opt/compass-solr-config
 ```
